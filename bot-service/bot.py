@@ -1,14 +1,17 @@
-import requests
+from fastapi import FastAPI
+from pydantic import BaseModel
 import os
 
-AI_URL = os.getenv("AI_SERVICE_URL", "http://ai-service:8000/analyze")
+app = FastAPI()
 
-def chat():
-    print("GenAI DevOps Bot started. Type your issue:")
-    while True:
-        msg = input("> ")
-        res = requests.post(AI_URL, json={"text": msg})
-        print("\nAI:", res.json()["result"], "\n")
+class ChatRequest(BaseModel):
+    message: str
 
-if __name__ == "__main__":
-    chat()
+@app.post("/chat")
+def chat(req: ChatRequest):
+    # Later we’ll plug GenAI here
+    return {"reply": f"Bot received: {req.message}"}
+
+@app.get("/")
+def root():
+    return {"status": "GenAI DevOps Bot is running"}
