@@ -1,0 +1,10 @@
+aiService:
+  image: pratik6958/ai-service:latest
+  replicas: 2
+
+botService:
+  image: pratik6958/bot-service:latest
+  replicas: 1
+
+service:
+  type: ClusterIP
