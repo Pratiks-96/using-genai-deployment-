@@ -1,4 +1,22 @@
-body { font-family: Arial; margin: 40px; background: #f4f4f4; }
-textarea { width: 100%; height: 150px; }
-button { margin-top: 10px; padding: 10px 20px; }
-pre { background: #fff; padding: 15px; margin-top: 20px; }
+body {
+  font-family: Arial, sans-serif;
+}
+
+#chatBox {
+  border: 1px solid #ccc;
+  height: 300px;
+  width: 400px;
+  overflow-y: auto;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+.user {
+  color: blue;
+  margin-bottom: 5px;
+}
+
+.bot {
+  color: green;
+  margin-bottom: 5px;
+}
