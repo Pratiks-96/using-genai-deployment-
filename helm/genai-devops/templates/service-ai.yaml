@@ -3,9 +3,10 @@ kind: Service
 metadata:
   name: ai-service
 spec:
-  type: {{ .Values.service.type }}
   selector:
     app: ai-service
   ports:
-  - port: 80
-    targetPort: 8000
+    - protocol: TCP
+      port: 80
+      targetPort: 8000
+  type: ClusterIP
