@@ -8,7 +8,7 @@ async function sendMessage() {
   chatBox.innerHTML += `<div class="user">${userMessage}</div>`;
   input.value = "";
 
-  const response = await fetch("http://BOT_SERVICE_IP/chat", {
+  const response = await fetch("http://54.163.41.42:8080/chat", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ message: userMessage })
