@@ -61,18 +61,8 @@ jobs:
       with:
         username: ${{ secrets.DOCKERHUB_USERNAME }}
         password: ${{ secrets.DOCKERHUB_TOKEN }}
-
-    - name: docker info 
-      run: docker info
-        
-
-    # -----------------------
-    # Push Images
-    # -----------------------
-    - name: Push AI service image
       run: |
-        docker push ${{ secrets.DOCKERHUB_USERNAME }}/ai-service:latest
-
-    - name: Push bot service image
-      run: |
+        docker push ${{ secrets.DOCKERHUB_USERNAME }}/ai-service:latest   
         docker push ${{ secrets.DOCKERHUB_USERNAME }}/bot-service:latest
+
+ 
