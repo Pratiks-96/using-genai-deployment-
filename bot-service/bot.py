@@ -1,4 +1,4 @@
-from fastapi import FastAPI
+from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 import requests
@@ -24,5 +24,9 @@ def health():
 
 @app.post("/chat")
 def chat(req: ChatRequest):
-    response = requests.post(AI_SERVICE_URL, json={"message": req.message})
-    return {"reply": response.json()["reply"]}
+    try:
+        response = requests.post(AI_SERVICE_URL, json={"message": req.message}, timeout=10)
+        response.raise_for_status()
+        return {"reply": response.json().get("reply", "No reply from AI service")}
+    except requests.exceptions.RequestException as e:
+        raise HTTPException(status_code=500, detail=f"AI service error: {str(e)}")
